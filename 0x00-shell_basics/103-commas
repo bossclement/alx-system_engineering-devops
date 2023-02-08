@@ -1,0 +1,2 @@
+#!/bin/bash
+ls -A --format=single-column | grep -vE '^\.' | sort | tr '\n' ',' | sed 's/^/.\/, ..\/,/'
