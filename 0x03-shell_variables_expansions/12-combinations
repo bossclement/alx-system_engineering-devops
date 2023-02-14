@@ -1,2 +1,2 @@
 #!/bin/bash
-echo o{{a..n},{p..z}} | tr ' ' '\n' | sort
+echo {{a..z}{a..z}} | tr 'oo ' '' | tr '%' '\n' | sort
