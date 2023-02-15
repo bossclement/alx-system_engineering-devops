@@ -7,6 +7,10 @@ then
 	# change the file to executable.
 	chmod u+x $1
 
+	# append the interpreter to the file
+	sed -i '1s/^/#!\/bin\/bash\n/' $1
+	
+
 	# check if the comment was provided and use it.
 	if [ "$2" != "" ];
 	then
