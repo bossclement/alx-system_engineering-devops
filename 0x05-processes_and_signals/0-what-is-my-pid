@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-echo $$
+echo $$ # using $$ to get the PID of the current running process.
