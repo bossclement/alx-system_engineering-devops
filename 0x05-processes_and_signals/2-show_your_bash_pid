@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Getting the pid for the bash
+ps -auxf | grep "bash"
