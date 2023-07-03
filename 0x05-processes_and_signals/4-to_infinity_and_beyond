@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 # Displays text indefinitely
-yes To infinity and beyond
+while true
+do
+	printf "To infinity and beyond\n"
+	sleep 2
+done
