@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Using SIGNALS and management with processes.
+# Creates file and displays text.
 
 FILE="/var/run/holbertonscript.pid"
 
