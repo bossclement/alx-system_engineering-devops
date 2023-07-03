@@ -21,7 +21,7 @@ int endless(void)
  *
  * Return: always 0 (success)
  */
-int main()
+int main(void)
 {
 	pid_t pid;
 	unsigned int i;
