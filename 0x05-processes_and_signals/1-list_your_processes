@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# using $$ to get the PID of the current running process.
+ps -ef --forest
