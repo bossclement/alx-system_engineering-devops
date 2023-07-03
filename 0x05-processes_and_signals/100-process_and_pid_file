@@ -1,25 +1,20 @@
 #!/usr/bin/env bash
 # Creates file and displays text.
 
-FILE="/var/run/holbertonscript.pid"
-
-function clean_up()
+terminator()
 {
-    rm -rf $FILE
-    if $1;
-    then
-	echo "I hate the kill command"
-    fi
-    exit
+	rm /var/run/myscript.pid
+	exit
 }
 
-echo "$$" > $FILE
+echo "$$" > /var/run/myscript.pid
 
-trap clean_up "true" SIGTERM
-trap clean_up "false" SIGQUIT
-trap 'echo "Y U no love me?!"' SIGINT
-
-while true;
+while true
 do
-    echo "To infinity and beyond"
+	echo "To infinity and beyond"
+	sleep 2
+	trap 'echo "Y U no love me?!"' SIGINT
+	trap 'echo "I hate the kill command" && terminator' SIGTERM
+	trap 'terminator' SIGQUIT
 done
+
