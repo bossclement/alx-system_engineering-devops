@@ -2,10 +2,10 @@
 
 input = ARGV[0]
 
-match = /School/.match(input)
+matches = input.scan(/School/)
 
-if match
-  puts "School"
+if !matches.empty?
+  puts matches.join
 else
   puts ""
 end
