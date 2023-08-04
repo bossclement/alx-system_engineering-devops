@@ -1,0 +1,27 @@
+Improved Explanation of the Additional Elements:
+
+1. Firewalls (x3):
+To enhance security, three firewalls are deployed as an extra layer of protection for the servers. Firewalls play a vital role in controlling and monitoring incoming and outgoing traffic. They are configured to allow only authorized traffic while blocking potential threats and unauthorized access attempts. This helps safeguard the infrastructure from malicious attacks and ensures data privacy.
+
+2. SSL Certificate for HTTPS:
+To ensure secure communication between users' web browsers and the web server, an SSL certificate is implemented to enable HTTPS. HTTPS encrypts data during transmission, protecting sensitive information such as login credentials and personal data from being intercepted by unauthorized parties. This adds a crucial layer of security, especially for sensitive web applications.
+
+3. Monitoring Clients (Data Collectors):
+Three monitoring clients are introduced as data collectors to gather essential information from the servers and services. These clients serve as data sources for monitoring tools like Sumo Logic or other monitoring services. They continuously collect data related to server performance, resource utilization, security incidents, and other critical metrics. This data is then sent to the monitoring service for analysis and visualization.
+
+How to Monitor Web Server QPS:
+
+To monitor the web server's Queries Per Second (QPS), a monitoring system is set up to track the incoming HTTP requests per second directed at the Nginx web servers. The monitoring service aggregates this data over time and presents it on a dashboard, allowing real-time tracking of the web server's request rate. By monitoring QPS, administrators can identify unusual traffic patterns, ensure optimal performance, and proactively address potential issues before they impact user experience.
+
+Issues with this Infrastructure and Proposed Solutions:
+
+1. Terminating SSL at the Load Balancer Level:
+While terminating SSL at the load balancer improves efficiency by offloading SSL processing from the application servers, it raises security concerns regarding communication between the load balancer and application servers. To address this issue, an alternative approach called "End-to-End SSL" can be adopted, where SSL encryption is maintained throughout the entire communication path, from the user's browser to the application servers. This ensures data confidentiality even within the internal network.
+
+2. Single MySQL Server Accepting Writes:
+Relying on a single MySQL server for write operations creates a single point of failure. Implementing a Primary-Replica (Master-Slave) cluster for MySQL would address this issue by introducing replication. In this setup, the Primary node handles writes, while Replica nodes replicate data for read operations. If the Primary node fails, one of the Replica nodes can be promoted as the new Primary, ensuring database availability and data redundancy.
+
+3. Identical Servers with All Components:
+The infrastructure's homogeneity may hinder scalability and resource optimization. Introducing specialized server roles, such as dedicated database servers, caching servers, or content delivery networks (CDNs), can distribute the workload and enhance scalability. This allows each component to operate efficiently, reducing bottlenecks and maximizing overall performance.
+
+By implementing the proposed solutions and improvements, the infrastructure becomes more resilient, secure, and scalable, addressing the identified issues and ensuring smooth operations even during high traffic periods or in the face of potential threats.

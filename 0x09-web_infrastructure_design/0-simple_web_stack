@@ -1,0 +1,17 @@
+A server is a computer system or a software program that serves as a central repository for data, files, and applications, providing services and resources to other computers or clients connected to it over a network. In this context, the "server" refers to a physical computer or a virtual machine with an IP address (e.g., 8.8.8.8) that hosts the website and runs necessary software components like the web server, application server, and database.
+
+The domain name serves as a human-readable address that allows users to access websites and other internet resources. It provides a user-friendly alternative to numeric IP addresses. In this case, the domain name is "foobar.com." The domain name system (DNS) resolves the domain name to the corresponding IP address (8.8.8.8 in this example), allowing users to access the website by typing "www.foobar.com" in their web browsers.
+
+The DNS record type associated with "www" in www.foobar.com is a "CNAME" record (Canonical Name record). The CNAME record points the subdomain "www" to the root domain "foobar.com," acting as an alias for the root domain. This ensures that users who type "www.foobar.com" or "foobar.com" reach the same server.
+
+The web server (Nginx in this case) handles incoming HTTP requests from users' web browsers and serves static content like HTML, CSS, JavaScript, and images. Additionally, it can act as a reverse proxy, forwarding dynamic requests to the application server for processing.
+
+The application server executes the website/application's code base, handling dynamic content generation, business logic, and interactions with the database. In this setup, Nginx forwards incoming requests to the application server, which processes the requests, generates responses, and sends them back to Nginx for delivery to users.
+
+The database (MySQL in this case) stores and manages the website's data, such as user accounts, posts, comments, and product details. The application server interacts with the database to fetch or store data based on user requests.
+
+The server communicates with the user's computer requesting the website using the HTTP or HTTPS protocol. When a user types "www.foobar.com" in their web browser, the browser sends an HTTP request to the server (IP address 8.8.8.8), asking for the website's content. The server processes the request, generates the appropriate HTTP response (containing the requested content), and sends it back to the user's browser over the internet. If HTTPS is used, the communication is encrypted for added security.
+
+Concerns with this infrastructure include the presence of a single server handling all components, creating a Single Point of Failure (SPOF). Any server issues result in the entire website becoming inaccessible until the problem is fixed. During maintenance or updates, the server might need to be restarted, causing downtime and impacting user accessibility. This downtime can be disruptive during peak hours.
+
+Addressing these concerns involves implementing redundant servers, load balancing, and failover mechanisms to enhance availability and reduce downtime during maintenance.

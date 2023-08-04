@@ -1,0 +1,29 @@
+1. Load Balancer (HAproxy):
+	To ensure high availability and load distribution, we add a load balancer (HAproxy) that distributes incoming traffic across multiple web servers (Nginx). The load balancer is configured with a Round Robin distribution algorithm, ensuring even distribution of traffic among the web servers.
+
+2. Redundant Web Servers (Nginx):
+To eliminate the single point of failure, we deploy multiple Nginx web servers. The load balancer directs incoming requests to these redundant servers, allowing seamless failover if any web server becomes unavailable.
+
+3. Application Server:
+The application server handles the website's code execution, separated from the web server for scalability and ease of deployment.
+
+4. MySQL Database (Primary-Replica Cluster):
+For database resilience, we set up a MySQL Primary-Replica (Master-Slave) cluster. The Primary node handles write operations, while the Replica nodes serve as read replicas for improved read performance.
+
+Load Balancer Setup - Active-Active Mode:
+In an active-active setup, we configure multiple load balancers to actively handle traffic simultaneously. This enhances load balancer availability and provides better redundancy.
+
+Database Primary-Replica (Master-Slave) Cluster:
+The Primary node serves as the master for write operations, and the Replica nodes serve as read replicas, distributing read load and improving read performance.
+
+Security Measures:
+To enhance security, we implement a firewall to control incoming and outgoing traffic, protecting the servers and services from unauthorized access and attacks. Additionally, we enable HTTPS to encrypt communication between users and the web server, ensuring data privacy during transmission.
+
+Monitoring:
+We deploy monitoring tools to track server performance, resource utilization, and security threats in real-time. This proactive monitoring enables timely detection and response to issues, ensuring smooth operation.
+
+Improved Infrastructure:
+
+With these improvements, the infrastructure becomes more robust, secure, and reliable. The redundant web servers and load balancer ensure high availability, and the MySQL Primary-Replica cluster enhances database resilience. Security measures like a firewall and HTTPS protect against unauthorized access and data breaches. The addition of monitoring tools allows for proactive management, identifying and addressing potential issues promptly.
+
+These enhancements address the previous single point of failure and security concerns, creating a more resilient and efficient infrastructure to support the website's availability and performance.
