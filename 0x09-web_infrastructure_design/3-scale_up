@@ -1,0 +1,29 @@
+1. Web Server:
+The web server (Nginx) will be responsible for serving static content like HTML, CSS, JavaScript, and images to users' web browsers. It efficiently handles incoming HTTP requests and serves the corresponding static files, reducing the application server's workload and enhancing overall performance. The web server will run on a dedicated server to ensure its availability and optimize resource utilization.
+
+2. Application Server:
+The application server will handle dynamic content generation, business logic, and database interactions for the web application. By separating the application logic from the web server, we achieve scalability and ease of deployment. The application server will operate on its dedicated server, enabling us to allocate appropriate resources based on the application's workload.
+
+3. Database:
+The database (MySQL) will store and manage the web application's data, including user accounts, posts, comments, and other relevant information. The database will reside on its dedicated server, ensuring data integrity, availability, and performance.
+
+4. Load Balancer (HAproxy):
+The load balancer (HAproxy) will be configured as a cluster with another load balancer for redundancy and high availability. Its primary role is to distribute incoming traffic across multiple web servers and application servers, ensuring a balanced workload and preventing overload on any single server. This setup allows us to scale the infrastructure horizontally, handling increasing user traffic efficiently.
+
+Specifics about the Infrastructure:
+
+Web Server:
+The web server (Nginx) is added to serve static content efficiently, offloading this task from the application server. This reduces the application server's processing load and improves response times for users accessing static resources.
+
+Application Server:
+The application server is added to handle dynamic content generation and business logic. By separating this functionality from the web server, we achieve better code organization, maintainability, and scalability. Additionally, the dedicated application server allows us to allocate resources specific to the application's needs.
+
+Database:
+The database (MySQL) is introduced to manage the web application's data. Storing data in a dedicated database server ensures data integrity, reliability, and efficient data retrieval and storage.
+
+Load Balancer (HAproxy):
+The load balancer (HAproxy) is crucial for distributing incoming traffic across multiple web servers and application servers. By clustering HAproxy with another load balancer, we ensure high availability and eliminate any single points of failure. This load balancing mechanism optimizes resource usage and guarantees a seamless experience for users, even during traffic spikes.
+
+Conclusion:
+
+In conclusion, this infrastructure design separates the components effectively, allowing us to optimize resource allocation, ensure high availability, and scale the system as needed. The combination of a web server, application server, database, and clustered load balancers creates a robust and efficient setup to host web applications that can handle varying workloads and provide a smooth user experience.
