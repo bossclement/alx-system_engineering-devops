@@ -1,28 +1,17 @@
+#!/usr/bin/env bash
+# script to configure NGINX server
 #!/bin/bash
+
 # Update package lists and install Nginx
 sudo apt-get update
-sudo apt-get install -y nginx
-
-# Edit Nginx configuration to add custom header
-sudo bash -c 'cat <<EOF > /etc/nginx/sites-available/default
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-
-    root /var/www/html;
-
-    index index.html index.htm index.nginx-debian.html;
-
-    server_name _;
-
-    location / {
-        try_files $uri $uri/ =404;
-    }
-
-    # Add custom header
-    add_header X-Served-By $hostname;
-}
-EOF'
-
-# Restart Nginx
-sudo systemctl restart nginx
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+sudo mkdir -p /var/www/html
+sudo chmod -R 755 /var/www
+echo 'Hello World!' |sudo tee  /var/www/html/index.html
+echo "Ceci n'est pas une page" |sudo tee /var/www/html/404.html
+str="server_name _;\n\tadd_header X-Served-By \$hostname;\n\trewrite ^\/redirect_me https:\/\/www.blog.ehoneahobed.com permanent;"
+sudo sed -i "s/server_name _;/$str/" /etc/nginx/sites-enabled/default
+string_for_replacement="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+sudo sed -i "s/listen 80 default_server;/$string_for_replacement/" /etc/nginx/sites-enabled/default
+sudo service nginx restart
