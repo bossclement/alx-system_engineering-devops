@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# script that sends a get request to a REST API
+"""script that sends a get request to a REST API"""
 
 
 import requests
