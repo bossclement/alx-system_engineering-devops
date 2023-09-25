@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""script that sends a get request to a REST API"""
-
+"""Script that sends a get request to a REST API"""
 
 import requests
 import sys
