@@ -1,5 +1,6 @@
 # solve typo in wp settings file
-exec { 'Fix typo in filename':
-  command  => 'sudo sed -i "s/.phpp/.php/" /var/www/html/wp-settings.php',
-  provider => shell,
+$file_to_edit = '/var/www/html/wp-settings.php'
+exec { 'replace_line':
+  command => "sed -i 's/phpp/php/g' ${file_to_edit}",
+  path    => ['/bin','/usr/bin']
 }
