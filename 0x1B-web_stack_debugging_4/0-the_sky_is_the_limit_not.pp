@@ -1,6 +1,9 @@
 # solve typo in wp settings file
-$file_to_edit = '/var/www/html/wp-settings.php'
-exec { 'replace_line':
-  command => "sed -i 's/phpp/php/g' ${file_to_edit}",
-  path    => ['/bin','/usr/bin']
+exec { 'replace phpp with php':
+  command  => 'sed -ie \'s/class-wp-locale.phpp/class-wp-locale.php/\' /var/www/html/wp-settings.php',
+  provider => shell
+}
+exec { 'restart apache2 service':
+  command  => 'service apache2 restart',
+  provider => shell
 }
