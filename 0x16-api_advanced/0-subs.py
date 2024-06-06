@@ -1,24 +1,13 @@
 #!/usr/bin/python3
 """
-0-subs
+100-main
 """
+import sys
 
-from requests import get
-
-
-def number_of_subscribers(subreddit):
-    """
-    ueries the Reddit API and returns the number of subscribers
-    """
-
-    if subreddit is None or not isinstance(subreddit, str):
-        return 0
-
-    agent = {'User-agent': 'Google Chrome Version 81.0.4044.129'}
-    url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
-    res = get(url, headers=agent).json()
-
-    try:
-        return res.get('data').get('subscribers')
-    except Exception:
-        return 0
+if __name__ == '__main__':
+    count_words = __import__('100-count').count_words
+    if len(sys.argv) < 3:
+        print("Usage: {} <subreddit> <list of keywords>".format(sys.argv[0]))
+        print("Ex: {} programming 'python java javascript'".format(sys.argv[0]))
+    else:
+        result = count_words(sys.argv[1], [x for x in sys.argv[2].split()])
