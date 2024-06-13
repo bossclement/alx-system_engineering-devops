@@ -1,9 +1,12 @@
-# solve typo in wp settings file
-exec { 'replace phpp with php':
-  command  => 'sed -ie \'s/class-wp-locale.phpp/class-wp-locale.php/\' /var/www/html/wp-settings.php',
-  provider => shell
+# increases the number of traffic NGINX can handle
+
+exec { 'fix--for-nginx':
+  command => 'sed -i "s/15/4096/" /etc/default/nginx',
+  path    => '/usr/local/bin/:/bin/'
 }
-exec { 'restart apache2 service':
-  command  => 'service apache2 restart',
-  provider => shell
+
+# Restart Nginx
+-> exec { 'nginx-restart':
+  command => 'nginx restart',
+  path    => '/etc/init.d/'
 }
