@@ -1,17 +1,12 @@
-# script
-class { 'limits':
-  limits => {
-    'holberton' => {
-      'domain' => 'hard',
-      'type'   => '-',
-      'item'   => 'nofile',
-      'value'  => '65535',
-    },
-    'holberton' => {
-      'domain' => 'soft',
-      'type'   => '-',
-      'item'   => 'nofile',
-      'value'  => '65535',
-    },
-  },
+# enables the user holberton to login and open files
+
+exec { 'increase-hard-file-limit-for-holberton-user':
+  command => 'sed -i "/holberton hard/s/5/50000/" /etc/security/limits.conf',
+  path    => '/usr/local/bin/:/bin/'
+}
+
+# Increase soft file limit for user holberton
+exec { 'increase-soft-file-limit-for-holberton-user':
+  command => 'sed -i "/holberton soft/s/4/50000/" /etc/security/limits.conf',
+  path    => '/usr/local/bin/:/bin/'
 }
